@@ -9,7 +9,6 @@ node_modules
 /.kateproject.*
 CMakeLists.txt.user*
 .cmake/
-/.clang-format
 /compile_commands.json
 build/
 xmlerrors
