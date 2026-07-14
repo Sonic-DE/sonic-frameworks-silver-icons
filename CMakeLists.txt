@@ -3,6 +3,8 @@ cmake_minimum_required(VERSION 3.29)
 set(KF_VERSION "6.28.0") # handled by release scripts
 project(BreezeIcons VERSION ${KF_VERSION})
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 # Disallow in-source build
 if("${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_BINARY_DIR}")
    message(FATAL_ERROR "Breeze Icons requires an out-of-source build. Please create a separate build directory and run 'cmake path_to_breeze_icons [options]' there.")

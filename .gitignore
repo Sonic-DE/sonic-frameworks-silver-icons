@@ -16,3 +16,4 @@ xmlerrors
 .idea
 /cmake-build*
 .cache
+.ccls-cache
