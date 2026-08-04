@@ -2,41 +2,41 @@
 set(CMAKE_AUTOMOC OFF)
 
 # declare both install dirs, icons will install fallback icons to dark, too!
-set(BREEZE_INSTALL_DIR ${KDE_INSTALL_FULL_ICONDIR}/breeze)
-set(BREEZE_DARK_INSTALL_DIR ${KDE_INSTALL_FULL_ICONDIR}/breeze-dark)
+set(SILVER_INSTALL_DIR ${KDE_INSTALL_FULL_ICONDIR}/silver)
+set(SILVER_DARK_INSTALL_DIR ${KDE_INSTALL_FULL_ICONDIR}/silver-dark)
 
-# generate resource file for all breeze icons
-set(RESOURCE_FILE ${CMAKE_CURRENT_BINARY_DIR}/breeze-icons.qrc)
-set(RESOURCE_FILE_BINARY ${CMAKE_CURRENT_BINARY_DIR}/breeze-icons.rcc)
+# generate resource file for all silver icons
+set(RESOURCE_FILE ${CMAKE_CURRENT_BINARY_DIR}/silver-icons.qrc)
+set(RESOURCE_FILE_BINARY ${CMAKE_CURRENT_BINARY_DIR}/silver-icons.rcc)
 
 # set and create the generation directories, we always need them
-set(ICON_GEN_DIR ${CMAKE_BINARY_DIR}/breeze/icons)
-set(ICON_DARK_GEN_DIR ${CMAKE_BINARY_DIR}/breeze/icons-dark)
+set(ICON_GEN_DIR ${CMAKE_BINARY_DIR}/silver/icons)
+set(ICON_DARK_GEN_DIR ${CMAKE_BINARY_DIR}/silver/icons-dark)
 file(MAKE_DIRECTORY ${ICON_GEN_DIR})
 file(MAKE_DIRECTORY ${ICON_DARK_GEN_DIR})
 
 # get all icon categories
 FILE(GLOB possible_icon_dirs RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/*)
-SET(breeze_icon_dirs "")
+SET(silver_icon_dirs "")
 FOREACH(possible_icon_dir ${possible_icon_dirs})
     IF(IS_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${possible_icon_dir})
-        LIST(APPEND breeze_icon_dirs ${possible_icon_dir})
+        LIST(APPEND silver_icon_dirs ${possible_icon_dir})
     ENDIF()
 ENDFOREACH()
 
 # get all icons as dependencies for the generation
 file(GLOB_RECURSE icon_svgs ${CMAKE_CURRENT_SOURCE_DIR}/*.svg)
 
-set(icon_generation_depends commonthemeinfo.theme.in breeze.theme.in breeze-dark.theme.in)
+set(icon_generation_depends commonthemeinfo.theme.in silver.theme.in silver-dark.theme.in)
 if(NOT CMAKE_GENERATOR STREQUAL "Xcode")
     list(APPEND icon_generation_depends ${icon_svgs})
 endif()
 
 # generate the two theme indices
-file(COPY_FILE breeze.theme.in ${ICON_GEN_DIR}/index.theme)
+file(COPY_FILE silver.theme.in ${ICON_GEN_DIR}/index.theme)
 file(READ commonthemeinfo.theme.in COMMON_THEME_INFO)
 file(APPEND ${ICON_GEN_DIR}/index.theme ${COMMON_THEME_INFO})
-file(COPY_FILE breeze-dark.theme.in ${ICON_DARK_GEN_DIR}/index.theme)
+file(COPY_FILE silver-dark.theme.in ${ICON_DARK_GEN_DIR}/index.theme)
 file(READ commonthemeinfo.theme.in COMMON_THEME_INFO)
 file(APPEND ${ICON_DARK_GEN_DIR}/index.theme ${COMMON_THEME_INFO})
 
@@ -69,31 +69,31 @@ endif()
 # install as compatibility resource file if really requested
 # FIXME: remove after e.g. Kexi is ported
 if(BINARY_ICONS_RESOURCE)
-    install(FILES ${RESOURCE_FILE_BINARY} DESTINATION ${BREEZE_INSTALL_DIR})
+    install(FILES ${RESOURCE_FILE_BINARY} DESTINATION ${SILVER_INSTALL_DIR})
 endif()
 
 if(NOT SKIP_INSTALL_ICONS)
     # install the instantiated theme indices
-    install(FILES ${ICON_GEN_DIR}/index.theme DESTINATION ${BREEZE_INSTALL_DIR})
-    install(FILES ${ICON_DARK_GEN_DIR}/index.theme DESTINATION ${BREEZE_DARK_INSTALL_DIR})
+    install(FILES ${ICON_GEN_DIR}/index.theme DESTINATION ${SILVER_INSTALL_DIR})
+    install(FILES ${ICON_DARK_GEN_DIR}/index.theme DESTINATION ${SILVER_DARK_INSTALL_DIR})
 
-    # we install icons as breeze and as fallback for breeze-dark
-    # breeze-dark will overwrite some installed files with generated color patched ones
+    # we install icons as silver and as fallback for silver-dark
+    # silver-dark will overwrite some installed files with generated color patched ones
 
-    install(DIRECTORY ${breeze_icon_dirs} DESTINATION ${BREEZE_INSTALL_DIR})
-    install(DIRECTORY ${breeze_icon_dirs} DESTINATION ${BREEZE_DARK_INSTALL_DIR})
+    install(DIRECTORY ${silver_icon_dirs} DESTINATION ${SILVER_INSTALL_DIR})
+    install(DIRECTORY ${silver_icon_dirs} DESTINATION ${SILVER_DARK_INSTALL_DIR})
 
     if(WITH_ICON_GENERATION)
-        install(DIRECTORY ${ICON_GEN_DIR}/ DESTINATION ${BREEZE_INSTALL_DIR})
-        install(DIRECTORY ${ICON_GEN_DIR}/ DESTINATION ${BREEZE_DARK_INSTALL_DIR})
+        install(DIRECTORY ${ICON_GEN_DIR}/ DESTINATION ${SILVER_INSTALL_DIR})
+        install(DIRECTORY ${ICON_GEN_DIR}/ DESTINATION ${SILVER_DARK_INSTALL_DIR})
     endif()
 
     # generated dark icons are installed on-top
-    install(DIRECTORY ${ICON_DARK_GEN_DIR}/ DESTINATION ${BREEZE_DARK_INSTALL_DIR})
+    install(DIRECTORY ${ICON_DARK_GEN_DIR}/ DESTINATION ${SILVER_DARK_INSTALL_DIR})
 
     # update the icon caches
-    gtk_update_icon_cache(${BREEZE_INSTALL_DIR})
-    gtk_update_icon_cache(${BREEZE_DARK_INSTALL_DIR})
+    gtk_update_icon_cache(${SILVER_INSTALL_DIR})
+    gtk_update_icon_cache(${SILVER_DARK_INSTALL_DIR})
 endif()
 
 if (WITH_ICONS_LIBRARY)
@@ -104,7 +104,7 @@ if (WITH_ICONS_LIBRARY)
     # this has issues with LTO, we have a unit test that tells if stuff got lost in the DLL
     qt_add_big_resources(kbreezeicons_resource_SRCS
         ${RESOURCE_FILE}
-        OPTIONS --root /icons/breeze
+        OPTIONS --root /icons/silver
     )
 
 

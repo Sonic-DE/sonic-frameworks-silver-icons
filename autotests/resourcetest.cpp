@@ -20,7 +20,7 @@ class ResourceTest : public QObject
     void compareFileResourceWithFilesystem(const QString &name, bool generated = false)
     {
         // resource location
-        const QString qrcLocation(QStringLiteral(":/icons/breeze/%1").arg(name));
+        const QString qrcLocation(QStringLiteral(":/icons/silver/%1").arg(name));
 
         // file system location
         const QString fsLocation((generated ? PROJECT_BINARY_DIR : PROJECT_SOURCE_DIR) + QStringLiteral("/icons/%1").arg(name));

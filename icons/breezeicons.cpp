@@ -13,7 +13,7 @@
 static void resourceInit()
 {
     // needs to be called outside of namespace
-    Q_INIT_RESOURCE(breeze_icons);
+    Q_INIT_RESOURCE(silver_icons);
 }
 
 namespace BreezeIcons
@@ -24,10 +24,10 @@ void initIcons()
     // ensure the resource is there and loaded for static libs
     resourceInit();
 
-    // ensure we fallback to breeze, if no user fallback is set
+    // ensure we fallback to silver, if no user fallback is set
     const QString fallbackTheme = QIcon::fallbackThemeName();
     if (fallbackTheme.isEmpty() || fallbackTheme == QLatin1String("hicolor")) {
-        QIcon::setFallbackThemeName(QStringLiteral("breeze"));
+        QIcon::setFallbackThemeName(QStringLiteral("silver"));
     }
 }
 

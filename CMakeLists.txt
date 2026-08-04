@@ -7,7 +7,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Disallow in-source build
 if("${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_BINARY_DIR}")
-   message(FATAL_ERROR "Breeze Icons requires an out-of-source build. Please create a separate build directory and run 'cmake path_to_breeze_icons [options]' there.")
+   message(FATAL_ERROR "Silver Icons requires an out-of-source build. Please create a separate build directory and run 'cmake path_to_silver_icons [options]' there.")
 endif()
 
 # ECM setup
@@ -61,9 +61,9 @@ option(SKIP_INSTALL_ICONS "Skip installing the icons files" OFF)
 
 # pure compatibility option for e.g. Kexi, not used in general and wastes disk space
 # FIXME: remove after e.g. Kexi is ported
-option(BINARY_ICONS_RESOURCE "Install Qt binary resource file containing breeze icons (breeze-icons.rcc), should only be used if needed for compatibility" OFF)
+option(BINARY_ICONS_RESOURCE "Install Qt binary resource file containing silver icons (silver-icons.rcc), should only be used if needed for compatibility" OFF)
 
-option(WITH_ICONS_LIBRARY "Build the Breeze icons library" ON)
+option(WITH_ICONS_LIBRARY "Build the Silver icons library" ON)
 
 if(WITH_ICONS_LIBRARY)
     set(version_header "${CMAKE_CURRENT_BINARY_DIR}/icons/breezeicons_version.h")

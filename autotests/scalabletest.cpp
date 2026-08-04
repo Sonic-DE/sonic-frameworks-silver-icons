@@ -202,7 +202,7 @@ private Q_SLOTS:
             // Also check in the normal theme if it's listed in Inherits
             config.beginGroup("Icon Theme");
             auto inherits = config.value("Inherits", QString()).toStringList();
-            if (checkInherits && inherits.contains(QStringLiteral("breeze"))) {
+            if (checkInherits && inherits.contains(QStringLiteral("silver"))) {
                 QString inheritedDir = PROJECT_SOURCE_DIR + QStringLiteral("/icons");
 
                 QSettings inheritedConfig(inheritedDir + QStringLiteral("/index.theme"), QSettings::IniFormat);
